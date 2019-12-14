@@ -148,6 +148,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Cows-bulls.cpp" />
+    <ClCompile Include="GetGuess.cpp" />
+    <ClCompile Include="PrintIntro.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GetGuess.h" />
+    <ClInclude Include="PrintIntro.h" />
+    <ClInclude Include="Ściągawka.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
