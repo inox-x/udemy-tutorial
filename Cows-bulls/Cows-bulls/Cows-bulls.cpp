@@ -3,13 +3,17 @@
 #include <string>
 #include "PrintIntro.h"
 #include "GetGuess.h"
+#include "PlayGame.h"
+#include "AskToPlayAgain.h"
+#include "FBullCowGame.h"
+
+FBullCowGame BCGame;
 
 int main() {
 	printintro();
-	constexpr int NUMBER_OF_TURNS = 5;
-	for (int count = 1; count <= NUMBER_OF_TURNS; count++)
-	{
-		std::cout << "your guess: " << getguess() << std::endl;
-	}
+	do {
+		BCGame.playgame();
+	} while (asktoplayagain() == true);
+
 	return 0;
 }

@@ -13,3 +13,5 @@ constexpr char answ[] = "Okay m8 i'll try my best";
 //typ nazwaFunkcji(typ zmienna1,typ zmienna2) {
 // kod..
 //}
+
+//nazwaFunkcji(jakasZmienna);
