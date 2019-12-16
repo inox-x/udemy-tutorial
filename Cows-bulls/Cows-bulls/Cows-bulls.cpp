@@ -7,6 +7,8 @@
 #include "AskToPlayAgain.h"
 #include "FBullCowGame.h"
 
+using int32 = int;
+using FText = std::string;
 FBullCowGame BCGame;
 
 int main() {

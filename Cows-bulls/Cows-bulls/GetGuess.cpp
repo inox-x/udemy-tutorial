@@ -1,8 +1,10 @@
 #include <iostream>
 #include <string>
 
-std::string getguess() {
-	std::string userguess = "";
+using FString = std::string;
+
+FString getguess() {
+	FString userguess = "";
 	std::getline(std::cin, userguess);
 	return userguess;
 }

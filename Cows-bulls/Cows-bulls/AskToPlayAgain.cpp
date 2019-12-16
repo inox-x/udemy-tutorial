@@ -1,11 +1,12 @@
 #include <iostream>
 #include <string>
 
+using FString = std::string;
 
 bool asktoplayagain()
 {
 	std::cout << "Do you want to play again? ";
-	std::string response = "";
+	FString response = "";
 	std::getline(std::cin, response);
 
 	bool playagain = (response[0] == 'Y' || response[0] == 'y');
