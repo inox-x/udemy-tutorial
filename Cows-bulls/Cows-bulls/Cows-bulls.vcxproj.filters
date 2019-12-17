@@ -21,9 +21,6 @@
     <ClCompile Include="PrintIntro.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="GetGuess.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
     <ClCompile Include="AskToPlayAgain.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
@@ -36,9 +33,6 @@
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
     <ClInclude Include="Ściągawka.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="GetGuess.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
     <ClInclude Include="AskToPlayAgain.h">

@@ -150,13 +150,11 @@
     <ClCompile Include="AskToPlayAgain.cpp" />
     <ClCompile Include="Cows-bulls.cpp" />
     <ClCompile Include="FBullCowGame.cpp" />
-    <ClCompile Include="GetGuess.cpp" />
     <ClCompile Include="PrintIntro.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AskToPlayAgain.h" />
     <ClInclude Include="FBullCowGame.h" />
-    <ClInclude Include="GetGuess.h" />
     <ClInclude Include="PrintIntro.h" />
     <ClInclude Include="Ściągawka.h" />
   </ItemGroup>

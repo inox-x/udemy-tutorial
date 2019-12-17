@@ -11,7 +11,8 @@ using int32 = int;
 using FText = std::string;
 FBullCowGame BCGame;
 
-int main() {
+int main()
+{
 	printintro();
 	do {
 		BCGame.playgame();

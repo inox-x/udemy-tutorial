@@ -11,10 +11,12 @@ bool asktoplayagain()
 
 	bool playagain = (response[0] == 'Y' || response[0] == 'y');
 	std::cout << "First char: ";
-	if (playagain) {
+	if (playagain)
+	{
 		std::cout << "True";
 	}
-	else {
+	else
+	{
 		std::cout << "False";
 	}
 	std::cout << std::endl;

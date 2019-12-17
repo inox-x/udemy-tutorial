@@ -18,6 +18,8 @@ void FBullCowGame::reset()
 	
 	mycurrenttry = 1;
 	mymaxtries = 8;
+
+	Bisgamewon = false;
 }
 
 int32 FBullCowGame::getmaxtries() const
@@ -33,13 +35,14 @@ void FBullCowGame::playgame()
 	std::cout << " letter isogram I'm thinking of?" << std::endl;
 
 
-	for (int32 i = 1; i <= getmaxtries(); i++)
+
+	while ( ! isgamewon() && getcurrenttry() <= mymaxtries)
 	{
 		std::cout << "Try " << getcurrenttry() << " . Enter your guess: ";
-		FString userguess = getguess();
-		FBullCowCount BullCowCount = submitguess(userguess);
+		FString userguess = getvalidguess();
+		FBullCowCount BullCowCount = submitvalidguess(userguess);
 		std::cout << "Bulls = " << BullCowCount.Bulls << std::endl;
-		std::cout << "Cows = " << BullCowCount.Cows << std::endl;
+		std::cout << "Cows = " << BullCowCount.Cows << std::endl << std::endl;
 	}
 
 	return;
@@ -57,38 +60,99 @@ int32 FBullCowGame::getcurrenttry() const
 
 bool FBullCowGame::isgamewon() const
 {
-	return false;
+	return Bisgamewon;
 }
 
-FBullCowCount FBullCowGame::submitguess(FString guess)
+FBullCowCount FBullCowGame::submitvalidguess(FString guess)
 {
 	mycurrenttry = mycurrenttry + 1;
 	FBullCowCount BullCowCount;
 	
 	int32 guesslength = guess.length();
-	int32 hiddenwordlength = myhiddenword.length();
-	for (int32 i = 0; i < guesslength; i++) {
+	int32 wordlength = myhiddenword.length();
+	for (int32 i = 0; i < guesslength; i++)
+	{
 		bool isinguess = 0;
-		for (int32 j = 0; j < hiddenwordlength; j++) {
-			if (guess[i] == myhiddenword[j]) {
+		for (int32 j = 0; j < wordlength; j++) 
+		{
+			if (guess[i] == myhiddenword[j] && i == j)
+			{
 				isinguess = 1;
 			
 			break;
 			}
 		}
-		if (isinguess == 1) {
+		if (isinguess == 1)
+		{
 			BullCowCount.Cows++;
 		}
-		else {
+		else
+		{
 		BullCowCount.Bulls++;
 		}
 	}
-	
+	if (BullCowCount.Cows == wordlength)
+	{
+		Bisgamewon = true;
+	}
+	else
+	{
+		Bisgamewon = false;
+	}
+
 	
 	return BullCowCount;
+}
+
+Eguessstatus FBullCowGame::checkguessvalidity(FString guess) const
+{
+	if (myhiddenword.length() == guess.length() && myhiddenword.compare(guess) != 0)
+	{
+		return Eguessstatus::Not_isogram;
+	}
+	else if (false)
+	{
+		return Eguessstatus::Not_lowercase;
+	}
+	else if (myhiddenword.length() != guess.length())
+	{
+		return Eguessstatus::Wrong_length;
+	}
+	else
+	{
+		return Eguessstatus::OK;
+	}
 }
 
 bool FBullCowGame::isguessedword(FString userword) const
 {
 	return false;
+}
+
+FString FBullCowGame::getvalidguess()
+{
+	Eguessstatus status = Eguessstatus::Invalid_status;
+	FString userguess = "";
+	do
+	{
+	std::getline(std::cin, userguess);
+		
+	status = checkguessvalidity(userguess);
+	switch (status)
+		{
+		case Eguessstatus::Wrong_length:
+			std::cout << "Please enter a " << myhiddenword.length() << " letter word.\n";
+			break;
+		case Eguessstatus::Not_isogram:
+			std::cout << "Please enter a word without repeating letters.\n";
+			break;
+		case Eguessstatus::Not_lowercase:
+			std::cout << "Please enter all lowercase letters.\n";
+			break;
+		default:
+			return userguess;
+		}
+	std::cout << std::endl;
+	} while (status != Eguessstatus::OK);
+	return userguess;
 }

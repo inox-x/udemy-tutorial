@@ -3,7 +3,8 @@
 
 using FString = std::string;
 
-FString getguess() {
+FString getguess()
+{
 	FString userguess = "";
 	std::getline(std::cin, userguess);
 	return userguess;
