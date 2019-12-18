@@ -2,6 +2,8 @@
 #include <iostream>
 #include <string>
 #include "GetGuess.h"
+#include <map>
+#define Tmap std::map
 
 using int32 = int;
 using FString = std::string;
@@ -44,6 +46,8 @@ void FBullCowGame::playgame()
 		std::cout << "Bulls = " << BullCowCount.Bulls << std::endl;
 		std::cout << "Cows = " << BullCowCount.Cows << std::endl << std::endl;
 	}
+	
+	gamesummary();
 
 	return;
 }
@@ -106,11 +110,11 @@ FBullCowCount FBullCowGame::submitvalidguess(FString guess)
 
 Eguessstatus FBullCowGame::checkguessvalidity(FString guess) const
 {
-	if (myhiddenword.length() == guess.length() && myhiddenword.compare(guess) != 0)
+	if (isisogram(guess) == 0)
 	{
 		return Eguessstatus::Not_isogram;
 	}
-	else if (false)
+	else if (islowercase(guess) == 0)
 	{
 		return Eguessstatus::Not_lowercase;
 	}
@@ -127,6 +131,54 @@ Eguessstatus FBullCowGame::checkguessvalidity(FString guess) const
 bool FBullCowGame::isguessedword(FString userword) const
 {
 	return false;
+}
+
+void FBullCowGame::gamesummary()
+{
+	if (isgamewon() == 1)
+	{
+		std::cout << "Congratulations! You won!\n";
+	}
+	else
+	{
+		std::cout << "You lost, better luck next time!\n";
+	}
+}
+
+bool FBullCowGame::isisogram(FString guessedword) const
+{
+	if (guessedword.length() <= 1)
+	{
+		return true;
+	}
+	Tmap<char, bool> letterseen;
+	for (auto letter : guessedword)
+	{
+		letter = tolower(letter);
+
+		if (letterseen[letter])
+		{
+			return false;
+		}
+		else
+		{
+			letterseen[letter] = true;
+		}
+	}
+
+	return true;
+}
+
+bool FBullCowGame::islowercase(FString guessedword) const
+{
+	for (auto letter : guessedword)
+	{
+		if (islower(letter) == 0)
+		{
+			return false;
+		}
+	}
+	return true;
 }
 
 FString FBullCowGame::getvalidguess()

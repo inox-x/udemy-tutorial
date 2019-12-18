@@ -40,4 +40,7 @@ private:
 	int32 mymaxtries;
 	FString myhiddenword;
 	bool Bisgamewon;
+	void gamesummary();
+	bool isisogram(FString) const;
+	bool islowercase(FString) const;
 };
