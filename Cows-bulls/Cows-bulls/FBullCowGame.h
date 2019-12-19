@@ -37,7 +37,6 @@ private:
 	FString wordtoguess;
 	bool isguessedword(FString) const;
 	int32 mycurrenttry;
-	int32 mymaxtries;
 	FString myhiddenword;
 	bool Bisgamewon;
 	void gamesummary();
